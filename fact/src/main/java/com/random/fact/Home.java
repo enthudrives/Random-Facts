@@ -6,7 +6,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -18,20 +17,20 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 public class Home extends ActionBarActivity {
     TextView fact_container;
+    public static final String URL = "http://randomfunfacts.com/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         fact_container = (TextView) findViewById(R.id.fact_container);
-        String url = "http://randomfunfacts.com/";
-        new RetrieverTask().execute(url);
+
+        new RetrieverTask().execute(URL);
 
         final ImageButton button = (ImageButton) findViewById(R.id.refresh);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String url = "http://randomfunfacts.com/";
-                new RetrieverTask().execute(url);
+                new RetrieverTask().execute(URL);
             }
         });
     }
@@ -48,8 +47,8 @@ public class Home extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.refresh_menu) {
+            new RetrieverTask().execute(URL);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -71,7 +70,7 @@ public class Home extends ActionBarActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            fact_container.setText(result.substring(result.indexOf("strong")+10,result.indexOf("/strong")-5));
+            fact_container.setText(result.substring(result.indexOf("strong") + 10, result.indexOf("/strong") - 5));
         }
     }
 }
