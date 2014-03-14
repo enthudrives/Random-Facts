@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:isScrollContainer="true"
     tools:context="com.random.fact.Home"
     tools:ignore="MergeRootFrame">
 
@@ -15,12 +16,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/refresh"
-        android:text="@string/refresh"
-        android:gravity="center"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        />
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/refresh"
+            android:src="@drawable/refresh"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center" />
+
+    </RelativeLayout>
 </LinearLayout>

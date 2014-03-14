@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import org.apache.http.client.HttpClient;
@@ -26,7 +27,7 @@ public class Home extends ActionBarActivity {
         String url = "http://randomfunfacts.com/";
         new RetrieverTask().execute(url);
 
-        final Button button = (Button) findViewById(R.id.refresh);
+        final ImageButton button = (ImageButton) findViewById(R.id.refresh);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String url = "http://randomfunfacts.com/";
