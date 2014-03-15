@@ -17,6 +17,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 public class Home extends ActionBarActivity {
     TextView fact_container;
+    ImageButton button;
     public static final String URL = "http://randomfunfacts.com/";
 
     @Override
@@ -27,9 +28,10 @@ public class Home extends ActionBarActivity {
 
         new RetrieverTask().execute(URL);
 
-        final ImageButton button = (ImageButton) findViewById(R.id.refresh);
+        button = (ImageButton) findViewById(R.id.refresh);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                button.setEnabled(false);
                 new RetrieverTask().execute(URL);
             }
         });
@@ -71,6 +73,7 @@ public class Home extends ActionBarActivity {
         @Override
         protected void onPostExecute(String result) {
             fact_container.setText(result.substring(result.indexOf("strong") + 10, result.indexOf("/strong") - 5));
+            button.setEnabled(true);
         }
     }
 }
